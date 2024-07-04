@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passward Generator</title>
+    <link rel="stylesheet" href="stytle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+ 
+    <div id="container">
+        <h1>Generate A <br> <span> Random Passward </span></h1>
+        <div id="display">
+            <input type="text" id="Passward" placeholder="Passward">
+            <i class="fa-regular fa-copy" onclick="copypassward()"></i>
+        </div>
+        <button onclick="createPass()"><i class="fa-solid fa-bolt"></i>  Generate Your Passward</button>
+    </div>
+    
+    <script>
+        let PasswardBox = document.getElementById('passward');
+        let length = 10;
+        
+        let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let lowercase = 'abcdefghijklmnopqrstwvxyz';
+        let symbol = '@#$&*!';
+        let number = '1234567890';
+        let allchars = uppercase + lowercase+ number + symbol;
+
+        function createPass(){
+            let passward = " ";
+            passward += uppercase[Math.floor(Math.random()*uppercase.length)];
+            passward += lowercase[Math.floor(Math.random()*lowercase.length)];
+            passward += number[Math.floor(Math.random()*number.length)];
+            passward += symbol[Math.floor(Math.random()*symbol.length)];
+
+            while(length>passward.length){
+            passward += allchars[Math.floor(Math.random()*allchars.length)];
+            }
+           PasswardBox.value = passward;
+        }
+        function copypassward(){
+            PasswardBox.select();
+            document.execCommand("copy");
+        }
+    </script>
+     
+</body>
+</html>
